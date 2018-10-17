@@ -25,7 +25,7 @@
 	<title><?php echo($content['title']); ?></title>
 </head>
 <body>
-	<div id="container">
+	<div class="content" id="container">
 		<header>
 			<div id="player-logo">
 				<div id="logo">

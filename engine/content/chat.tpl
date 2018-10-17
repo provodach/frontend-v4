@@ -6,15 +6,17 @@
 	<div class="chat-message" id="mesg-3333"><span class="chat-time">13:37</span> <span class="chat-id" onclick="mentionId('1337')">1337</span> <span class="chat-name" style="color: #f030f2" onclick="mentionId('333333')">333333</span> <span class="chat-content" id="chat-content-333333">Квюо эа вэртырэм чэнзэрет рыпудяары. Ыт пюрто ютроквюы еюж, црял пырикульа ат вяш. Ку жят омныз пожтэа фачтидёе, ты ючю емпэтюсъ кевёбюж дэчырюёжжэ, вяш ед дюиж жкряпшэрит. Ты ажжюм лаудым ыюм, ку вэрыар пытынтёюм.</span></div>
 </div>
 <div id="chat-panel">
-	<tr>
-		<div id="chat-authorized">
-			<textarea id="chat-text" placeholder="[messaging intensifies] нажми Enter чтобы отправить." autocomplete="off"></textarea>
-		</div>
-		
-		<div id="chat-readonly">
-			Чтобы писать в чат нужно пройти авторизацию <a href="https://oauth.vk.com/authorize?client_id=5216648&display=page&redirect_uri=https://api.https.cat/airin/auth&response_type=code">через ВК</a> или <a href="https://t.me/provodach_bot" target="_blank">через Telegram</a>.
-		</div>
-	</tr>
+    <div class="content">
+        <tr>
+            <div id="chat-authorized">
+                <textarea id="chat-text" placeholder="[messaging intensifies] нажми Enter чтобы отправить." autocomplete="off"></textarea>
+            </div>
+
+            <div id="chat-readonly">
+                Чтобы писать в чат нужно пройти авторизацию <a href="https://oauth.vk.com/authorize?client_id=5216648&display=page&redirect_uri=https://api.https.cat/airin/auth&response_type=code">через ВК</a> или <a href="https://t.me/provodach_bot" target="_blank">через Telegram</a>.
+            </div>
+        </tr>
+    </div>
 </div>
 
 <script type="text/javascript">

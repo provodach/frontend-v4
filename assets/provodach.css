@@ -27,12 +27,10 @@ header {
 #content {
     font-size: 12pt;
 }
-
-#container {
+.content {
     padding: 0 25px;
     margin: 0;
     box-sizing: border-box;
-    font-size: 0;
     width: 100%;
     max-width: 850px;
     display: flex;
@@ -41,13 +39,20 @@ header {
     align-items: center;
 }
 
+.content .content {
+    padding: 0;
+}
+
+#container {
+    font-size: 0;
+}
+
 #player-logo {
     height: 100%;
     padding: 0 0 10px 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-
 }
 
 #logo, #track {
@@ -74,7 +79,6 @@ header {
     font-weight: 300;
     font-family: "Open Sans", Sans-Serif;
     text-decoration: none;
-
     display: block;
     box-sizing: border-box;
 }
@@ -98,7 +102,6 @@ header {
     padding-right: 15px;
     display: table-cell;
     border-top: 3px solid transparent;
-
 }
 
 .navi-link {
@@ -111,7 +114,6 @@ header {
     vertical-align: middle;
     padding-right: 5px;
     padding-left: 5px;
-
     border-bottom: 2px solid transparent;
 }
 
