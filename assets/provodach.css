@@ -1,280 +1,274 @@
 body {
-	background: #020202;
-	color: #f5f5f5;
-	margin: 0; padding: 0;
-	font-family: "PT Sans", "Open Sans", "Tahoma", "Verdana", Sans-Serif;
-	padding-top: 200px;
-	padding-bottom: 75px;
+    background: #020202;
+    color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    font-family: "PT Sans", "Open Sans", "Tahoma", "Verdana", Sans-Serif;
+    padding-bottom: 75px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 a {
-	color: #f5f5f5;
+    color: #f5f5f5;
 }
 
 h3 {
-	font-weight: normal;
-	margin: 0;
+    font-weight: normal;
+    margin: 0;
 }
 
 header {
-	width: 800px;
-	height: 200px;
-	position: fixed;
-	top: 0;
-	left: 50%;
-	margin-left: -400px;
-	background: #020202;
+    background: #020202;
+    width: 100%;
 }
 
-content {
-	font-size: 12pt;
+#content {
+    font-size: 12pt;
 }
 
 #container {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-	font-size: 0;
-
-	width: 800px;
-	margin: 0 auto;
+    padding: 0 25px;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 0;
+    width: 100%;
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
-
 
 #player-logo {
-	height: 100%;
-	width: 800px;
-	padding: 0;
-	display: table-cell;
-	vertical-align: middle;
-	text-align: center;
+    height: 100%;
+    padding: 0 0 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
 }
 
-
-
-#logo {
-	height: 60px;
-	display: block;
-	margin: 0 auto;
+#logo, #track {
+    display: flex;
+    align-self: center;
 }
-
 
 #provodach-text {
-	width: 330px;
-	height: 80px;
-	padding: 0;
-	display: inline-block;
+    width: 330px;
+    height: 80px;
+    padding: 0;
+    display: inline-block;
 }
 
 #provodach-text path {
-	color: #f5f5f5;
-	fill: #f5f5f5;
+    color: #f5f5f5;
+    fill: #f5f5f5;
 }
 
 #track {
-	padding: 10px;
-	font-size: 18pt;
-	font-weight: 300;
-	font-family: "Open Sans", Sans-Serif;
-	text-decoration: none;
+    padding: 0;
+    margin-top: -10px;
+    font-size: 18pt;
+    font-weight: 300;
+    font-family: "Open Sans", Sans-Serif;
+    text-decoration: none;
 
-	display: block;
-	box-sizing: border-box;
+    display: block;
+    box-sizing: border-box;
 }
 
 #player-bar {
-	text-align: center;
-	cursor: pointer;
-
-	display: table-cell;
-	vertical-align: middle;
-
-	width: 100%;
-	padding: 5px;
-	box-sizing: border-box;
-
-	height: 80px;
+    text-align: center;
+    cursor: pointer;
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 80px;
 }
 
 #player {
-	height: 40px;
-	padding-right: 15px;
-	display: table-cell;
-	border-top: 3px solid transparent;
+    height: 40px;
+    padding-right: 15px;
+    display: table-cell;
+    border-top: 3px solid transparent;
 
 }
 
 .navi-link {
-	height: 40px;
-	font-size: 16pt;
-	font-weight: 300;
-	font-family: "Open Sans", Sans-Serif;
-	text-decoration: none;
-	display: table-cell;
-	vertical-align: middle;
-	padding-right: 5px;
-	padding-left: 5px;
+    height: 40px;
+    font-size: 16pt;
+    font-weight: 300;
+    font-family: "Open Sans", Sans-Serif;
+    text-decoration: none;
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 5px;
+    padding-left: 5px;
 
-	border-bottom: 2px solid transparent;
+    border-bottom: 2px solid transparent;
 }
 
 .navi-link.active {
-	border-bottom: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
 }
 
 .player-control-icon {
-	display: inline-block;
+    display: inline-block;
 }
 
 .player-control-icon, .player-control-icon svg {
-	/* border-top: 7px solid transparent; */
-	height: 40px;
-	stroke: #f5f5f5;
+    /* border-top: 7px solid transparent; */
+    height: 40px;
+    stroke: #f5f5f5;
 }
 
 #player-control-playing {
-	display: none; /* by default state is paused */
+    display: none; /* by default state is paused */
 }
-
-
-
-
-
 
 /* ================================================================= */
 
 .chat-message {
-	box-sizing: border-box;
-	border-left: 3px solid transparent;
-	padding-left: 3px;
-	margin-bottom: 5px;
+    box-sizing: border-box;
+    border-left: 3px solid transparent;
+    padding-left: 3px;
+    margin-bottom: 5px;
 }
 
 .chat-mention {
-	cursor: pointer;
-	color: #ABD998;
-	text-decoration: none;
+    cursor: pointer;
+    color: #ABD998;
+    text-decoration: none;
 }
 
 .chat-quote {
-	color: #2CF572;
+    color: #2CF572;
 }
 
 .chat-spoiler {
-	color: #f0f0f0;
-	background: #f0f0f0;
+    color: #f0f0f0;
+    background: #f0f0f0;
 }
 
 .chat-spoiler:hover {
-	color: #020202;
+    color: #020202;
 }
 
 .chat-time {
-	color: #707070;
+    color: #707070;
 }
 
 .chat-id {
-	color: #909090;
-	cursor: pointer;
+    color: #909090;
+    cursor: pointer;
 }
 
 .chat-name {
-	color: rgb(28, 186, 225);
-	cursor: pointer;
+    color: rgb(28, 186, 225);
+    cursor: pointer;
 }
 
 #chat-service-message {
-	padding: 3px;
-	margin-bottom: 2px;
-	text-align: center;
-	font-size: 10pt;
+    padding: 3px;
+    margin-bottom: 2px;
+    text-align: center;
+    font-size: 10pt;
 }
 
 .chat-error {
-	background: rgba(15, 2, 2, 0.6);
-	color: #f50202;
-	box-sizing: border-box;
-	padding: 3px;
-	margin-bottom: 2px;
+    background: rgba(15, 2, 2, 0.6);
+    color: #f50202;
+    box-sizing: border-box;
+    padding: 3px;
+    margin-bottom: 2px;
 }
 
 input:-webkit-autofill {
-    background-color: transparent!important;
+    background-color: transparent !important;
 }
 
-
 .service-message {
-	box-sizing: border-box;
-	padding: 5px;
-	padding-left: 8px;
-	cursor: pointer;
+    box-sizing: border-box;
+    padding: 5px;
+    padding-left: 8px;
+    cursor: pointer;
 }
 
 .service-message.info {
-	border-left: 3px solid #4AC9FF;
-	color: #4AC9FF;
-	background: rgba(2, 2, 2, 0.4);
+    border-left: 3px solid #4AC9FF;
+    color: #4AC9FF;
+    background: rgba(2, 2, 2, 0.4);
 }
 
 .service-message.warning {
-	border-left: 3px solid #FFFF4A;
-	color: #FFFF4A;
-	background: rgba(2, 2, 2, 0.4);
+    border-left: 3px solid #FFFF4A;
+    color: #FFFF4A;
+    background: rgba(2, 2, 2, 0.4);
 }
 
 .service-message.error {
-	border-left: 3px solid #FF051E;
-	color: #FF051E;
-	background: rgba(2, 2, 2, 0.4);
+    border-left: 3px solid #FF051E;
+    color: #FF051E;
+    background: rgba(2, 2, 2, 0.4);
 }
 
 .service-message.neutral {
-	border-left: 3px solid #f5f5f5;
-	color: #f5f5f5;
-	background: rgba(2, 2, 2, 0.4);
+    border-left: 3px solid #f5f5f5;
+    color: #f5f5f5;
+    background: rgba(2, 2, 2, 0.4);
 }
 
-#chat-panel
-{
-	width: 800px;
-	height: 70px;
-	box-sizing: border-box;
-	position: fixed;
-	bottom: 0; left: 50%;
-	margin-left: -400px;
-	border: none;
-	background: rgba(2, 2, 2, 0.8);
+#chat-panel {
+    height: 70px;
+    box-sizing: border-box;
+    position: fixed;
+    padding: 0 25px;
+    bottom: 0;
+    left: 0;
+    background: rgba(2, 2, 2, 0.8);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 #chat-readonly {
-	display: none;
+    display: none;
 }
 
 #chat-readonly {
-	display: table-cell;
-	width: 800px;
-	height: 70px;
-	vertical-align: middle;
-	text-align: center;
+    display: block;
 }
 
-#chat-text
-{
-	background: transparent;
-	border: none;
-	height: 50px;
-	width: 100%;
-	resize: none;
-	overflow: auto;
-	color: #f5f5f5;
-	font-family: "PT Sans", "Open Sans", Verdana, Tahoma, Arial, Sans-Serif;
-	font-size: 13pt;
-	outline: none;
-	box-sizing: border-box;
-	padding: 0px;
-	-webkit-appearance: none;
+#chat-authorized {
+    width: 100%;
+}
+
+#chat-text {
+    background: transparent;
+    border: none;
+    height: 50px;
+    width: 100%;
+    resize: none;
+    overflow: auto;
+    color: #f5f5f5;
+    font-family: "PT Sans", "Open Sans", Verdana, Tahoma, Arial, Sans-Serif;
+    font-size: 13pt;
+    outline: none;
+    box-sizing: border-box;
+    padding: 0px;
+    -webkit-appearance: none;
 }
 
 input:-webkit-autofill {
-    background-color: transparent!important;
+    background-color: transparent !important;
 }

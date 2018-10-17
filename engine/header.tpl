@@ -8,7 +8,7 @@
 	<meta name="author" content="Asterleen">
 	<meta name="apple-itunes-app" content="app-id=1080566427">
 	<meta name="theme-color" content="#020202">
-
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300|PT+Sans:400,400i,700,700i&amp;subset=cyrillic,latin-ext" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="assets/provodach.css">
@@ -33,23 +33,24 @@
 				</div>
 
 				<a href="https://music.youtube.com/search?q=CHAINLESS+-+Artifacts" id="track">Chainless &ndash; Artifacts</a>
+			</div>
 
-				<div id="player-bar">
-					<div id="player">
-						<svg id="player-control-paused" class="player-control-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183.93 210.54">
-							<polygon points="2.5 4.31 2.5 206.23 178.9 105.27 2.5 4.31" style="fill:none;stroke-miterlimit:10;stroke-width:5px"/>
-						</svg>
-					</div>
+			<div id="player-bar">
+				<div id="player">
+					<svg id="player-control-paused" class="player-control-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183.93 210.54">
+						<polygon points="2.5 4.31 2.5 206.23 178.9 105.27 2.5 4.31" style="fill:none;stroke-miterlimit:10;stroke-width:5px"/>
+					</svg>
+				</div>
 
-					<?php foreach ($content['menu'] as $item => $properties) : ?> 
-					<a
+				<?php foreach ($content['menu'] as $item => $properties) : ?>
+				<a
 						class="navi-link<?php if($properties['active']) echo(' active');?>"
-						href="/<?php echo($item); ?>" 
+						href="/<?php echo($item); ?>"
 						id="menu-item-<?php echo($item); ?>"
 						onclick="loadContent('<?php echo($item); ?>'); return false;"><?php echo($properties['title']); ?>
-					</a>
-					<?php endforeach; ?>
-				</div>
+				</a>
+				<?php endforeach; ?>
 			</div>
+
 		</header>
-		<content>
+		<div id="content">
