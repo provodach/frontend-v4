@@ -1,0 +1,7 @@
+#EXTM3U
+#EXTINF:-1,Provoda.ch AAC
+http://station.waveradio.org/provodach
+#EXTINF:-1,Provoda.ch MP3
+http://station.waveradio.org/provodach.mp3
+#EXTINF:-1,Provoda.ch MP3 Low
+http://station.waveradio.org/provodach-low.mp3
