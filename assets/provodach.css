@@ -98,6 +98,7 @@ content {
 
 #player {
 	height: 40px;
+	width: 45px;
 	padding-right: 15px;
 	display: table-cell;
 	border-top: 3px solid transparent;

@@ -35,10 +35,11 @@
 				<a href="https://music.youtube.com/search?q=CHAINLESS+-+Artifacts" id="track">Chainless &ndash; Artifacts</a>
 
 				<div id="player-bar">
-					<div id="player">
+					<div id="player" onclick="radioToggle()">
 						<svg id="player-control-paused" class="player-control-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183.93 210.54">
 							<polygon points="2.5 4.31 2.5 206.23 178.9 105.27 2.5 4.31" style="fill:none;stroke-miterlimit:10;stroke-width:5px"/>
 						</svg>
+						<svg id="player-control-playing" class="player-control-icon" viewBox="0 0 156.43 206.52"><path d="M2.5,204H53.22V2.5H2.5ZM103.21,2.5V204h50.72V2.5Z" style="fill:none;stroke-miterlimit:10;stroke-width:5px"/></svg>
 					</div>
 
 					<?php foreach ($content['menu'] as $item => $properties) : ?> 
