@@ -28,6 +28,61 @@
 	<div id="fullscreen-visuals">
 		<canvas id="player-vis-fs"></canvas>
 	</div>
+
+	<div id="settings-overlay" onclick="toggleSettings()"></div>
+	<div id="settings">
+		<div id="settings-header">
+			<div id="settings-header-text">Settings</div>
+			<div id="settings-header-close" onclick="toggleSettings()">
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="settings-close-button" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 357 357" xml:space="preserve">
+					<g>
+						<g>
+							<polygon points="357,35.7 321.3,0 178.5,142.8 35.7,0 0,35.7 142.8,178.5 0,321.3 35.7,357 178.5,214.2 321.3,357 357,321.3 214.2,178.5" fill="#FFFFFF"/>
+						</g>
+					</g>
+				</svg>
+			</div>
+		</div>
+		<div id="settings-content">
+			<h3>Volume</h3>
+			<div id="volume-gauge-container">
+				<div id="volume-gauge"></div>
+			</div>
+
+			<h3>Effects</h3>
+			<div class="checkbox" onclick="toggleVisuals();">
+				<div class="checkbox-box" id="cbx-visuals"></div> Enable audio visuals (may be CPU intensive)
+			</div>
+		</div>
+	</div>
+
+
+	<svg version="1.1" id="settings-icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 452.949 452.949" xml:space="preserve" onclick="toggleSettings()">
+		<g>
+			<g>
+				<g>
+					<path d="M452.949,164.23h-76.187l53.912-53.912l-88.043-88.043l-53.912,53.912V0H164.23v76.187l-53.912-53.912l-88.044,88.043
+						l53.912,53.912H0.001v124.487h76.187L22.275,342.63l88.044,88.044l53.912-53.912v76.187h124.487v-76.187l53.912,53.913
+						l88.044-88.044l-53.912-53.912h76.187V164.23z M340.55,273.718l68.912,68.912l-66.831,66.831l-68.912-68.913v97.4H179.23v-97.4
+						l-68.912,68.913L43.488,342.63l68.912-68.912H15.001V179.23H112.4l-68.912-68.912l66.831-66.831L179.23,112.4V15h94.487v97.4
+						l68.912-68.912l66.831,66.831l-68.912,68.912h97.399v94.487H340.55z"/>
+					<path d="M226.475,124.417c-56.274,0-102.057,45.783-102.057,102.057S170.2,328.531,226.475,328.531
+						c56.275,0,102.058-45.783,102.058-102.057C328.533,170.2,282.749,124.417,226.475,124.417z M218.975,139.744v34.986
+						c-22.841,3.296-40.948,21.403-44.244,44.244h-34.986C143.349,176.942,176.943,143.348,218.975,139.744z M218.975,313.204
+						c-42.032-3.603-75.626-37.198-79.23-79.23h34.986c3.296,22.841,21.403,40.948,44.244,44.244V313.204z M189.185,226.474
+						c0-20.562,16.729-37.29,37.29-37.29c20.563,0,37.291,16.728,37.291,37.29s-16.729,37.29-37.291,37.29
+						S189.185,247.036,189.185,226.474z M233.975,313.205v-34.986c22.841-3.296,40.949-21.403,44.245-44.244h34.986
+						C309.602,276.006,276.007,309.601,233.975,313.205z M278.22,218.974c-3.296-22.841-21.404-40.948-44.245-44.244v-34.986
+						c42.032,3.604,75.627,37.198,79.231,79.23H278.22z"/>
+					<rect x="211.545" y="44.79" width="29.86" height="15"/>
+					<rect x="211.545" y="393.158" width="29.86" height="15"/>
+					<rect x="42.337" y="218.974" width="29.86" height="15"/>
+					<rect x="380.752" y="218.974" width="29.86" height="15"/>
+				</g>
+			</g>
+		</g>
+	</svg>
+
 	<div id="container">
 		<header>
 			<canvas id="player-vis"></canvas>
