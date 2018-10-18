@@ -32,7 +32,7 @@
 	<div id="settings-overlay" onclick="toggleSettings()"></div>
 	<div id="settings">
 		<div id="settings-header">
-			<div id="settings-header-text">Settings</div>
+			<div id="settings-header-text">Настройки</div>
 			<div id="settings-header-close" onclick="toggleSettings()">
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="settings-close-button" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 357 357" xml:space="preserve">
 					<g>
@@ -44,7 +44,7 @@
 			</div>
 		</div>
 		<div id="settings-content">
-			<h3>Volume</h3>
+			<h3>Громкость</h3>
 			<div id="volume-gauge-container">
 				<div id="volume-gauge"></div>
 			</div>
