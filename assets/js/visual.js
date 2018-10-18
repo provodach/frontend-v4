@@ -75,7 +75,7 @@ function visualInit()
 	document.addEventListener("mozfullscreenchange",    onFullscreenToggle);
 	document.addEventListener("fullscreenchange",       onFullscreenToggle);
 
-	$(document).dblclick(function(event) { launchFullScreen(document.getElementById('fullscreen-visuals')) });
+	$('#logo').dblclick(function(event) { launchFullScreen(document.getElementById('fullscreen-visuals')) });
 	$('#fullscreen-visuals').dblclick(function(event) { cancelFullscreen(); });
 }
 
