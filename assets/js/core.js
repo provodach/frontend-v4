@@ -11,7 +11,7 @@ function coreInit()
 
 	settings.volume = getVal('volume');
 
-	/*if (getVal('visuals_active') == null)
+	if (getVal('visuals_active') == null)
 		setVal('visuals_active', 1);
 
 	settings.visualsActive = (+getVal('visuals_active') === 1) ? true : false;
@@ -19,7 +19,7 @@ function coreInit()
 	$('#volume-gauge-container').click(volumeBarPressed);
 
 	if (settings.visualsActive)
-		$('#cbx-visuals').addClass('active'); */
+		$('#cbx-visuals').addClass('active');
 	
 	radioInit();
 }

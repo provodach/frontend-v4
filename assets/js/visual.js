@@ -11,8 +11,8 @@ var
 	dataArray,
 	fullscreenRunning = false,
 	visualActive = false,
-	WIDTH  = 600,
-	HEIGHT = 100,
+	WIDTH  = 800,
+	HEIGHT = 195,
 	FS_WIDTH = 0,
 	FS_HEIGHT = 0;
 

@@ -58,7 +58,7 @@ function radioInit()
 
 		playerReady = true;
 
-		// visualInit();
+		visualInit();
 	}
 	catch (e)
 	{
@@ -123,7 +123,7 @@ function radioPlay(channel)
 		
 		radioPlayer.play();
 		
-		// visualStart();
+		visualStart();
 
 		$('#player-control-paused').hide();
 		$('#player-control-playing').show();
