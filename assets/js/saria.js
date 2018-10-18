@@ -43,7 +43,7 @@ function autoScroll(appendedId)
 		var apdBlock = $('#mesg-'+appendedId),
 			cntBlock = $(document);
 			
-			cntBlock.scrollTop(cntBlock.scrollTop() + apdBlock.height());
+			cntBlock.scrollTop(cntBlock.scrollTop() + apdBlock.height() + 10);
 	}
 	else
 	{

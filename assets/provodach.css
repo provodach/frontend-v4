@@ -11,6 +11,11 @@ a {
 	color: #f5f5f5;
 }
 
+h1, h2 {
+	margin-top: 3px;
+	margin-bottom: 5px;
+}
+
 h3 {
 	font-weight: normal;
 	margin: 0;
@@ -292,7 +297,8 @@ content {
 	box-sizing: border-box;
 	border-left: 3px solid transparent;
 	padding-left: 3px;
-	margin-bottom: 5px;
+	padding-bottom: 3px;
+	padding-top: 3px;
 }
 
 .chat-mention {

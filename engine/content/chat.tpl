@@ -10,6 +10,12 @@
 		</div>
 </div>
 
+<!-- Mrr :3 -->
+<audio id="message-sound" preload="auto">
+		<source src="/assets/snd/mrr.ogg" type="audio/ogg">
+		<source src="/assets/snd/mrr.mp3" type="audio/mpeg">
+</audio>
+
 <script type="text/javascript">
 	$(document).ready(function() {saria_init('<?php echo ((preg_match('/^[a-zA-Z0-9]+$/', $_GET['auth']) == 1) ? $_GET['auth'] : null);?>'); });
 </script>

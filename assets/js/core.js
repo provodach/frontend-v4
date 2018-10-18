@@ -39,7 +39,7 @@ function toggleSettings() {
 		if (currentSitePage === 'chat' && typeof setUserName === 'function') {
 			setUserName();
 		}
-		
+
 	} else {
 		settingsOvr.fadeIn(150);
 		settingsWin.fadeIn(200);
@@ -84,6 +84,7 @@ function showContent (name, content) {
 		$('#chat-settings').show();
 	} else {
 		$('#chat-settings').hide();
+		$(document).scrollTop(0);
 	}
 
 	mkactive(name);
