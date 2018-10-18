@@ -52,4 +52,4 @@
 				</div>
 			</div>
 		</header>
-		<content>
+		<content id="content">
