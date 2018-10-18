@@ -11,16 +11,16 @@
 
 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300|PT+Sans:400,400i,700,700i&amp;subset=cyrillic,latin-ext" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="assets/provodach.css">
+	<link rel="stylesheet" type="text/css" href="/assets/provodach.css">
 
 	<script src="//static.https.cat/js/jquery.js" type="text/javascript"></script>
 	<script src="//static.https.cat/js/jquery.mousewheel.js" type="text/javascript"></script>
 	<script src="//static.https.cat/js/util.js" type="text/javascript"></script>
 
-	<script type="text/javascript" src="assets/js/radio.js?v<?php echo(CLIENT_VERSION); ?>"></script>
-	<script type="text/javascript" src="assets/js/visual.js?v<?php echo(CLIENT_VERSION); ?>"></script>
-	<script type="text/javascript" src="assets/js/saria.js?v<?php echo(CLIENT_VERSION); ?>"></script>
-	<script type="text/javascript" src="assets/js/core.js?v<?php echo(CLIENT_VERSION); ?>"></script>
+	<script type="text/javascript" src="/assets/js/radio.js?v<?php echo(CLIENT_VERSION); ?>"></script>
+	<script type="text/javascript" src="/assets/js/visual.js?v<?php echo(CLIENT_VERSION); ?>"></script>
+	<script type="text/javascript" src="/assets/js/saria.js?v<?php echo(CLIENT_VERSION); ?>"></script>
+	<script type="text/javascript" src="/assets/js/core.js?v<?php echo(CLIENT_VERSION); ?>"></script>
 
 	<title><?php echo($content['title']); ?></title>
 </head>
