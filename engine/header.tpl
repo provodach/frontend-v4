@@ -49,9 +49,26 @@
 				<div id="volume-gauge"></div>
 			</div>
 
-			<h3>Effects</h3>
+			<h3>Эффекты</h3>
 			<div class="checkbox" onclick="toggleVisuals();">
-				<div class="checkbox-box" id="cbx-visuals"></div> Enable audio visuals (may be CPU intensive)
+				<div class="checkbox-box" id="cbx-visuals"></div> Включить эффекты (может снизить производительность)
+			</div>
+
+			<div id="chat-settings">
+				<h3>Настройки чата</h3>
+				<input type="text" placeholder="Ник (латиница и цифры, Enter чтобы сохранить)" id="username" name="username" autocomplete="off">
+				<div class="checkbox" onclick="setSoundState()">
+					<div class="checkbox-box" id="cbx-visuals"></div> Звук, если мне написали
+				</div>
+
+				<div>
+					Менять заголовок:
+					<select id="title-change-level" onchange="setTitleLevel(this)">
+						<option value="0">никогда</option>
+						<option value="1">если мне написали</option>
+						<option value="2">при любом сообщении</option>
+					</select>
+				</div>
 			</div>
 		</div>
 	</div>
