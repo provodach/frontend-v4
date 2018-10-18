@@ -12,7 +12,7 @@ var
 	fullscreenRunning = false,
 	visualActive = false,
 	WIDTH  = 800,
-	HEIGHT = 195,
+	HEIGHT = 120,
 	FS_WIDTH = 0,
 	FS_HEIGHT = 0;
 

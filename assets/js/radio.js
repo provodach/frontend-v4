@@ -295,11 +295,17 @@ function setTrackInfo (track)
 	if (!track)
 		return;
 
-	var trackParts = track.split(/\s\-\s/);
+	var trackParts = track.split(/\s\-\s/),
+		trackToDisplay = '';
+
+	if (trackParts.length <= 1)
+		trackToDisplay = track;
+	else
+		trackToDisplay = trackParts[0] + ' – ' + trackParts[1];
 
 	// iOS
 	if (radioPlayer != null)
-		radioPlayer.title = trackParts[0] + ' – ' + trackParts[1];
+		radioPlayer.title = trackToDisplay;
 
 	// Android/Chrome
 	if ('mediaSession' in navigator && radioPlayer != null)
@@ -310,8 +316,8 @@ function setTrackInfo (track)
 		  });
 	}
 
-	$("#track").text(track);
-	$("#track").attr("href", "https://music.youtube.com/search?q=" + encodeURIComponent(track));
+	$("#track").text(trackToDisplay);
+	$("#track").attr("href", "https://music.youtube.com/search?q=" + encodeURIComponent(trackParts[0] + ' ' + trackParts[1]));
 }
 
 function setTempTitle(title)
