@@ -74,7 +74,7 @@ content {
 	z-index: 1000;
 	background: #020202;
 
-	position: absolute;
+	position: fixed;
 	left: 50%;
 	top: 50%;
 	width: 600px;

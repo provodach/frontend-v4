@@ -58,7 +58,7 @@
 				<h3>Настройки чата</h3>
 				<input type="text" placeholder="Ник (латиница и цифры, Enter чтобы сохранить)" id="username" name="username" autocomplete="off">
 				<div class="checkbox" onclick="setSoundState()">
-					<div class="checkbox-box" id="cbx-visuals"></div> Звук, если мне написали
+					<div class="checkbox-box" id="cbx-chat-sound"></div> Звук, если мне написали
 				</div>
 
 				<div>

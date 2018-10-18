@@ -16,6 +16,20 @@ var
 	FS_WIDTH = 0,
 	FS_HEIGHT = 0;
 
+function toggleVisuals() {
+	cbx = $('#cbx-visuals');
+
+	if (cbx.hasClass('active')) {
+		cbx.removeClass('active');
+		settings.visualsActive = false;
+		setVal('visuals_active', 0);
+	} else {
+		cbx.addClass('active');
+		settings.visualsActive = true;
+		setVal('visuals_active', 1);
+		draw();
+	}
+}
 
 function launchFullScreen(element) {
 

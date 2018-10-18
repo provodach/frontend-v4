@@ -1,5 +1,6 @@
 var
 	localStorageAvailable = false,
+	currentSitePage = '',
 	settings = {
 		volume: 100,
 		visualsActive : true
@@ -24,21 +25,6 @@ function coreInit()
 	radioInit();
 }
 
-function toggleVisuals() {
-	cbx = $('#cbx-visuals');
-
-	if (cbx.hasClass('active')) {
-		cbx.removeClass('active');
-		settings.visualsActive = false;
-		setVal('visuals_active', 0);
-	} else {
-		cbx.addClass('active');
-		settings.visualsActive = true;
-		setVal('visuals_active', 1);
-		draw();
-	}
-}
-
 function toggleSettings() {
 	var settingsOvr = $('#settings-overlay'),
 		settingsWin = $('#settings');
@@ -46,6 +32,14 @@ function toggleSettings() {
 	if (settingsWin.is(':visible')) {
 		settingsOvr.fadeOut(200);
 		settingsWin.fadeOut(150);
+
+		// When user is on the Chat page and closes
+		// it we'll save their username and sent it
+		// to the server
+		if (currentSitePage === 'chat' && typeof setUserName === 'function') {
+			setUserName();
+		}
+		
 	} else {
 		settingsOvr.fadeIn(150);
 		settingsWin.fadeIn(200);
@@ -80,9 +74,17 @@ function loadContent(name) {
 
 function showContent (name, content) {
 	history.pushState(null, null, name);
+
+	currentSitePage = name;
 	
 	if (typeof saria_disconnect == 'function')
 		saria_disconnect();
+
+	if (currentSitePage === 'chat') {
+		$('#chat-settings').show();
+	} else {
+		$('#chat-settings').hide();
+	}
 
 	mkactive(name);
 	

@@ -97,10 +97,19 @@ function setUserName(enterPressed)
 	}
 }
 
-function setSoundState(obj)
+function setSoundState()
 {
-	sariaSettings.messageSoundEnabled = $(obj).prop('checked');
-	setVal('message_sound_enabled', (sariaSettings.messageSoundEnabled ? 1 : 0));
+	var cbx = $('#cbx-chat-sound');
+
+	if (cbx.hasClass('active')) {
+		cbx.removeClass('active');
+		sariaSettings.messageSoundEnabled = false;
+	} else {
+		cbx.addClass('active');
+		sariaSettings.messageSoundEnabled = true;
+	}
+
+	setVal('message_sound_enabled', (sariaSettings.messageSoundEnabled) ? 1 : 0);
 }
 
 function setTitleLevel(obj)
@@ -114,8 +123,7 @@ function restoreUserName()
 	sariaSettings.userName = checkUserName(getVal('username'));
 	$('#username').val(sariaSettings.userName);
 
-	if (sariaSettings.userName && sariaStatus.authorized)
-	{
+	if (sariaSettings.userName && sariaStatus.authorized) {
 		saria_sendCommand('IAM #'+sariaSettings.userName);
 	}
 }
@@ -457,13 +465,11 @@ function saria_init(auth)
 	$('#chat-settings-overlay').mousewheel(function(ev, d) {ev.preventDefault; return false;});
 	$('#chat-settings').mousewheel(function(ev, d) {ev.preventDefault; return false;});
 	
-	$('#username').keydown(function(e)
-	{
+	$('#username').keydown(function(e) {
 		setUserName(e.keyCode == 13 || e.keyCode == 10);
 	});
 	
-	$('#username').blur(function()
-	{
+	$('#username').blur(function() {
 		setUserName(true);
 	});
 
@@ -473,8 +479,11 @@ function saria_init(auth)
 	restoreUserName();
 
 	messageSound = document.getElementById('message-sound');
-	$('#play-sound').prop('checked', (getVal('message_sound_enabled') == 1));
-	sariaSettings.messageSoundEnabled = $('#play-sound').prop('checked');
+
+	sariaSettings.messageSoundEnabled = (+getVal('message_sound_enabled', 0) === 1);
+	if (sariaSettings.messageSoundEnabled) {
+		$('#cbx-chat-sound').addClass('active');
+	}
 
 	sariaSettings.titleNotificationLevel = +getVal('title_notif_level', 1);
 	$('#title-change-level').val(sariaSettings.titleNotificationLevel);
