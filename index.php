@@ -5,7 +5,7 @@ require_once ('engine/devdect.php');
 
 
 // Change me when css/js is changed
-define ('CLIENT_VERSION', 2);
+define ('CLIENT_VERSION', 5);
 
 
 $route = explode('/', $_GET['route']);
@@ -75,6 +75,7 @@ else
 {
 	$content['background_mode'] = $site_mode;
 	$content['title'] = $page_title.' &ndash; Радио &laquo;Проводач&raquo;';
+	$content['current_page'] = $route[0];
 
 	$content['menu'] = $menu; // see engine/menu.php
 	

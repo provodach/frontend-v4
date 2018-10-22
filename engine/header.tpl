@@ -17,6 +17,9 @@
 	<script src="//static.https.cat/js/jquery.mousewheel.js" type="text/javascript"></script>
 	<script src="//static.https.cat/js/util.js" type="text/javascript"></script>
 
+	<script type="text/javascript">
+		var currentSitePage = '<?php echo($content['current_page']); ?>';
+	</script>
 	<script type="text/javascript" src="/assets/js/radio.js?v<?php echo(CLIENT_VERSION); ?>"></script>
 	<script type="text/javascript" src="/assets/js/visual.js?v<?php echo(CLIENT_VERSION); ?>"></script>
 	<script type="text/javascript" src="/assets/js/saria.js?v<?php echo(CLIENT_VERSION); ?>"></script>

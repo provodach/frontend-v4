@@ -1,6 +1,5 @@
 var
 	localStorageAvailable = false,
-	currentSitePage = '',
 	settings = {
 		volume: 100,
 		visualsActive : true
@@ -21,6 +20,12 @@ function coreInit()
 
 	if (settings.visualsActive)
 		$('#cbx-visuals').addClass('active');
+
+	if (currentSitePage === 'chat') {
+		$('#chat-settings').show();
+	} else {
+		$('#chat-settings').hide();
+	}
 	
 	radioInit();
 }
