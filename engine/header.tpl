@@ -44,9 +44,12 @@
 			</div>
 		</div>
 		<div id="settings-content">
-			<h3>Громкость</h3>
-			<div id="volume-gauge-container">
-				<div id="volume-gauge"></div>
+			
+			<div id="settings-volume">
+				<h3>Громкость <span class="settings-hint">(используй колёсико мыши)</span></h3>
+				<div id="volume-gauge-container">
+					<div id="volume-gauge"></div>
+				</div>
 			</div>
 
 			<h3>Эффекты</h3>

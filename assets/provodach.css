@@ -59,6 +59,8 @@ content {
 	stroke: #f5f5f5;
 	fill: #f5f5f5;
 	cursor: pointer;
+
+	z-index: 50;
 }
 
 #settings, #settings-overlay {
@@ -171,6 +173,9 @@ content {
 	font-family: "PT Sans", "Open Sans", Sans-Serif!important;
 }
 
+.settings-hint {
+	color: #909090;
+}
 
 #container {
 	padding: 0;
@@ -479,6 +484,20 @@ input:-webkit-autofill {
 		height: 30px;
 	}
 
+
+	#settings {
+		position: fixed;
+		height: 100%;
+		width: 100%;
+		left: 0;
+		top: 0;
+		transform: none;
+	}
+
+	#settings-volume { /* mobile devices should use their internal volume settings */
+		display: none;
+	}
+
 	#container {
 		width: 100%;
 		box-sizing: border-box;
@@ -500,7 +519,24 @@ input:-webkit-autofill {
 		border-bottom: 1px solid #303030;
 	}
 
+	.service-message {
+		padding-left: 5px;
+	}
+
+	.chat-message {
+		padding: 0;
+		padding-bottom: 3px;
+	}
+
 	.chat-time {
 		display: none;
+	}
+
+	.chat-name, .chat-id {
+		font-size: 10pt;
+	}
+
+	.chat-content {
+		display: block;
 	}
 }
