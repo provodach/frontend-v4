@@ -26,6 +26,25 @@ var
 		messageSoundEnabled    : 1,
 		titleNotificationLevel : 1
 	},
+
+	prefixCodes = [
+		"\u{1F608}",
+		"\u{1F480}",
+		"\u{2620}\u{FE0F}",
+		"\u{1F47B}",
+		"\u{1F47D}",
+		"\u{1F916}",
+		"\u{1F9D9}",
+		"\u{1F9DB}",
+		"\u{1F9DF}",
+		"\u{1F9DE}",
+		"\u{1F987}",
+		"\u{1F989}",
+		"\u{1F577}\u{FE0F}",
+		"\u{1F578}\u{FE0F}",
+		"\u{1F31A}",
+		"\u{1F383}"
+	],
 	
 	messagesQueue   = [],
 	commandsHistory = [],
@@ -760,10 +779,12 @@ function saria_getCommand (command)
 			*/
 			
 			var color = (commands[4] !== 'NULL') ? commands[4] : sariaSettings.defaultColor,
+				colorOverride = 'ffa254',
 				isForMe = containsMyMessage(fulltext),
-				border = (isForMe) ? 'background: rgba(70, 70, 70, 0.35); border-left: 3px solid #'+sariaSettings.defaultColor : '';
+				border = (isForMe) ? 'background: rgba(70, 70, 70, 0.35); border-left: 3px solid #'+sariaSettings.defaultColor : '',
+				prefixIdx = parseInt(color[0], 16);
 			
-			var messageHtml = '<div class="chat-message" style="'+border+'" id="mesg-'+commands[1]+'"><span class="chat-time">'+time+'</span> <span class="chat-id" onclick="mentionId('+commands[1]+')">'+commands[1]+'</span> <span class="chat-name" style="color: #'+color+'" onclick="mentionId('+commands[1]+')">'+commands[3]+'</span> <span class="chat-content" id="chat-content-'+commands[1]+'">'+saria_processMessage(fulltext)+'</span></div>';
+			var messageHtml = '<div class="chat-message" style="'+border+'" id="mesg-'+commands[1]+'"><span class="chat-time">'+time+'</span> <span class="chat-id" onclick="mentionId('+commands[1]+')">'+commands[1]+'</span> <span class="chat-name" style="color: #'+colorOverride+'" onclick="mentionId('+commands[1]+')"> '+prefixCodes[prefixIdx]+' '+commands[3]+'</span> <span class="chat-content" id="chat-content-'+commands[1]+'">'+saria_processMessage(fulltext)+'</span></div>';
 
 			// var messageHtml = '<div class="chat-message" style="'+border+'" id="mesg-'+commands[1]+'"><span class="chat-time">'+time+'</span> <span class="chat-id" onclick="mentionId('+commands[1]+')">'+commands[1]+'</span> <span class="chat-name" style="color: #'+color+'" onclick="mentionId('+commands[1]+')"><img class="chat-pic-fd" src="//api.https.cat/airin/catty.svg?c='+color+'"></span> <span class="chat-content" id="chat-content-'+commands[1]+'">'+saria_processMessage(fulltext)+'</span></div>';
 			
