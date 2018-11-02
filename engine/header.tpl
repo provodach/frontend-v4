@@ -23,6 +23,7 @@
 	<script type="text/javascript" src="/assets/js/radio.js?v<?php echo(CLIENT_VERSION); ?>"></script>
 	<script type="text/javascript" src="/assets/js/visual.js?v<?php echo(CLIENT_VERSION); ?>"></script>
 	<script type="text/javascript" src="/assets/js/saria.js?v<?php echo(CLIENT_VERSION); ?>"></script>
+	<script type="text/javascript" src="/assets/js/crawley.js?v<?php echo(CLIENT_VERSION); ?>"></script>
 	<script type="text/javascript" src="/assets/js/core.js?v<?php echo(CLIENT_VERSION); ?>"></script>
 
 	<title><?php echo($content['title']); ?></title>
