@@ -566,4 +566,11 @@ input:-webkit-autofill {
 	.chat-content {
 		display: block;
 	}
+
+	/* Crawley */
+	.crawley-post-audio,
+	.crawley-post-image {
+		min-width: 100%;
+		width: 100%;
+	}
 }
