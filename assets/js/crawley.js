@@ -89,7 +89,7 @@ function crawley_renderPosts(content) {
 		postsHtml += 
 			'<div class="crawley-post-metadata" id="crawley-post-metadata-' + posts[i].id + '>' +
 			'<span class="crawley-post-metadata-time">' +
-				postDate.getDay() + '.' + postDate.getMonth() + '.' + postDate.getFullYear() +
+				postDate.getDate() + '.' + ('0' + (postDate.getMonth() + 1)).slice(-2) + '.' + postDate.getFullYear() +
 			'</span>' + 
 			'</div>';
 
