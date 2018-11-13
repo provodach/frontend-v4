@@ -121,7 +121,7 @@ function radioPlay(channel)
 
 		radioPlayer.oncanplay = function()
 		{
-			setTrackInfo(RADIO_CURRENT_TRACK);
+			setTrackInfo(RADIO_CURRENT_TRACK, true);
 			clearTimeout(playerRestartTimer);
 		}
 
@@ -297,42 +297,48 @@ function processResult(csRes)
         a = "- нет данных -";
 	}
 	
-	if (a != RADIO_CURRENT_TRACK)
-	{
+	setTrackInfo (a);
 
-		RADIO_CURRENT_TRACK = a;
-		setTrackInfo (a);
-	}
 }
 
-function setTrackInfo (track)
+function setTrackInfo (track, override)
 {
 	if (!track)
 		return;
 
-	var trackParts = track.split(/\s\-\s/),
+	var trackParts = track.split(/\s[\-\u2013]\s/),
 		trackToDisplay = '';
 
 	if (trackParts.length <= 1)
 		trackToDisplay = track;
-	else
+	else {
 		trackToDisplay = trackParts[0] + ' – ' + trackParts[1];
-
-	// iOS
-	if (radioPlayer != null)
-		radioPlayer.title = trackToDisplay;
-
-	// Android/Chrome
-	if ('mediaSession' in navigator && radioPlayer != null)
-	{
-		navigator.mediaSession.metadata = new MediaMetadata({
-		    title: trackParts[1],
-		    artist: trackParts[0]
-		  });
 	}
 
-	$("#track").text(trackToDisplay);
-	$("#track").attr("href", "https://music.youtube.com/search?q=" + encodeURIComponent(trackParts[0] + ' ' + trackParts[1]));
+	if ((RADIO_CURRENT_TRACK !== trackToDisplay) || override) {
+		RADIO_CURRENT_TRACK = trackToDisplay;
+
+		// iOS
+		if (radioPlayer != null)
+			radioPlayer.title = trackToDisplay;
+
+		// Android/Chrome
+		if ('mediaSession' in navigator && radioPlayer != null)
+		{
+			navigator.mediaSession.metadata = new MediaMetadata({
+			    title: trackParts[1],
+			    artist: trackParts[0]
+			  });
+		}
+
+		$("#track").text(trackToDisplay);
+		$("#track").attr("href", "https://google.com/search?q=" + encodeURIComponent(trackParts[0] + ' ' + trackParts[1]));
+
+		if (document.title !== oldDocumentTitle) {
+			document.title = "♪ " + RADIO_CURRENT_TRACK;
+		}
+	}
+
 }
 
 function setTempTitle(title)
@@ -343,5 +349,5 @@ function setTempTitle(title)
 	
 	track.html(title);
 	clearTimeout(trackTimer);
-	trackTimer = setTimeout(function() {tempShowing = false; setTrackInfo(RADIO_CURRENT_TRACK); }, 5000);
+	trackTimer = setTimeout(function() {tempShowing = false; setTrackInfo(RADIO_CURRENT_TRACK, true); }, 5000);
 }
