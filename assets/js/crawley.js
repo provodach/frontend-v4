@@ -21,7 +21,7 @@ function crawley_textProcess(text) {
 		
 	text = text.replace(/[&<>"']/g, function(m) { return map[m]; });
 	text = text.replace(new RegExp('(https?:\\/\\/([a-zA-Z0-9\\-\\.]+)\\/?[a-zA-Z0-9?&=.:;\\#\\/\\-_~%+]*)', 'gi'), '[<a href="$1" title="$1" target="_blank">$2</a>]');
-	return text.replace(/([^>])\n/g, '$1<br>');
+	return text.replace(/\n/g, '<br>');
 }
 
 function crawley_getPosts(position) {

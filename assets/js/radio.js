@@ -1,5 +1,6 @@
 var
 	RADIO_CURRENT_TRACK,
+	oldDocumentTitle,
 	trackTimer,
 	tempShowing = false;
 
@@ -56,6 +57,8 @@ function radioInit()
 		// Initialize track info.
 		requestTrackInfo();
 
+		setupBlurEvents();
+
 		playerReady = true;
 
 		visualInit();
@@ -65,6 +68,18 @@ function radioInit()
 		error ("Error: " + e.message);
 		playerReady = false;
 	}
+}
+
+function setupBlurEvents() {
+
+	oldDocumentTitle = document.title;
+
+	$(window).focus(function() {
+		document.title = oldDocumentTitle;
+	}).blur(function() {
+		oldDocumentTitle = document.title;
+		document.title = "♪ " + RADIO_CURRENT_TRACK;
+	});
 }
 
 function wheelVolControl(objEvent, intDelta)
