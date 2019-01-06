@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="description" content="Проводач. Самая атмосферная радиостанция в Сети.">
 	<meta name="keywords" content="проводач, провода, панельки, панельные дома, урбанистика, онлайн радио, радио, радио онлайн, спокойная музыка, музыка для отдыха, пост рок, эмбиент, provodach, provoda.ch, panel house, panel buildings, plattenbau, plattenbauten, urban, urbanistic, wires, wire pole, ambient, post-rock, relax music, relaxation music, relax radio">
-	<meta property="og:image" content="https://api.https.cat/graphics/provodach/web/night/">
+	<meta property="og:image" content="https://api.nay.su/graphics/provodach/web/night/">
 	<meta name="author" content="Asterleen">
 	<meta name="apple-itunes-app" content="app-id=1080566427">
 	<meta name="theme-color" content="#020202">
@@ -13,9 +13,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300|PT+Sans:400,400i,700,700i&amp;subset=cyrillic,latin-ext" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/assets/provodach.css">
 
-	<script src="//static.https.cat/js/jquery.js" type="text/javascript"></script>
-	<script src="//static.https.cat/js/jquery.mousewheel.js" type="text/javascript"></script>
-	<script src="//static.https.cat/js/util.js" type="text/javascript"></script>
+	<script src="//static.nay.su/js/jquery.js" type="text/javascript"></script>
+	<script src="//static.nay.su/js/jquery.mousewheel.js" type="text/javascript"></script>
+	<script src="//static.nay.su/js/util.js" type="text/javascript"></script>
 
 	<script type="text/javascript">
 		var currentSitePage = '<?php echo($content['current_page']); ?>';

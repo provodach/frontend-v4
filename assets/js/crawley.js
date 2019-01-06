@@ -2,7 +2,7 @@ var
 	crawley_config = {
 		container: "crawley-container",
 		amount: 10,
-		url: "//api.https.cat/crawley"
+		url: "//api.nay.su/crawley"
 	},
 
 	crawley_state = {
