@@ -2,7 +2,8 @@ var
 	crawley_config = {
 		container: "crawley-container",
 		amount: 10,
-		url: "//api.nay.su/crawley"
+		url: "//api.nay.su/crawley",
+		channel: "-1001079623045"
 	},
 
 	crawley_state = {
@@ -30,7 +31,8 @@ function crawley_getPosts(position) {
 	$.ajax(crawley_config.url + "/post", {
 		data: {
 			amount: crawley_config.amount,
-			offset: position * crawley_config.amount
+			offset: position * crawley_config.amount,
+			channel: crawley_config.channel
 		},
 		cache: false,
 		crossDomain: true,
