@@ -437,6 +437,10 @@ input:-webkit-autofill {
     background-color: transparent!important;
 }
 
+.chat-pic-catty {
+	height: 18px;
+}
+
 
 /* ===== Crawley Specific CSS ===== */
 
