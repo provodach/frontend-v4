@@ -465,6 +465,13 @@ input:-webkit-autofill {
 	width: 300px;
 }
 
+.crawley-post-image.single,
+.crawley-post-audio.single 
+{
+	width: 100%;
+	max-width: 100%;
+}
+
 /* ===== /Crawley Specific CSS ===== */
 
 @media handheld, only screen and (max-width: 1024px)

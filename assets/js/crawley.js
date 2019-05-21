@@ -25,15 +25,38 @@ function crawley_textProcess(text) {
 	return text.replace(/\n/g, '<br>');
 }
 
-function crawley_getPosts(position) {
+function crawley_getPosts(position, postId) {
 	position = position || 0;
 
-	$.ajax(crawley_config.url + "/post", {
-		data: {
+	var requestParams = {};
+
+	if (postId) {
+		var postIdParts = postId.split('_');
+
+		if (postIdParts.length !== 2) {
+			console.warn('Bad post ID, will not load:', postId);
+			return;
+		}
+
+		if (postIdParts[0] !== crawley_config.channel) {
+			console.warn('Bad post channel (mismatches with config), will not load:', postIdParts[0]);
+			return;
+		} else {
+			requestParams = {
+				channel: crawley_config.channel,
+				post: +postIdParts[1] // + is added to prevent manipulations with this parameter
+			}
+		}
+	} else {
+		requestParams = {
 			amount: crawley_config.amount,
 			offset: position * crawley_config.amount,
 			channel: crawley_config.channel
-		},
+		};
+	}
+
+	$.ajax(crawley_config.url + "/post", {
+		data: requestParams,
 		cache: false,
 		crossDomain: true,
 		dataType: "json",
@@ -52,7 +75,8 @@ function crawley_processPosts(res) {
 function crawley_renderPosts(content) {
 	var
 		postsHtml = '<div id="crawley-feed">',
-		posts = content.posts;
+		posts = content.posts,
+		isSingle = (posts.length === 1);
 
 	for (var i = 0; i < posts.length; i++) {
 
@@ -65,14 +89,14 @@ function crawley_renderPosts(content) {
 				case 'photo' :
 					postsHtml +=
 						'<a href="'+posts[i].attachment.url+'" target="_blank">' +
-						'<img src="'+posts[i].attachment.url+'" class="crawley-post-image" id="crawley-post-image-' + posts[i].attachment.id + '">' + 
+						'<img src="'+posts[i].attachment.url+'" class="crawley-post-image' + (isSingle ? ' single' : '') + '" id="crawley-post-image-' + posts[i].attachment.id + '">' + 
 						'</a>';
 					break;
 
 				case 'voice':
 				case 'audio':
 					postsHtml += 
-						'<audio src="'+posts[i].attachment.url+'" id="crawley-post-' + posts[i].attachment.type + '-' + posts[i].attachment.id + '" class="crawley-post-audio" controls></audio>';
+						'<audio src="'+posts[i].attachment.url+'" id="crawley-post-' + posts[i].attachment.type + '-' + posts[i].attachment.id + '" class="crawley-post-audio' + (isSingle ? ' single' : '') + '" controls></audio>';
 					break;
 
 				default: 
