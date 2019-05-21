@@ -1,6 +1,7 @@
 var
 	lastTrack,
 	showingTrack,
+	showingTrackStruct,
 	oldDocumentTitle,
 	trackTimer,
 	tempShowing = false;
@@ -309,15 +310,17 @@ function setTrackInfo (track, override)
 			case 2: // some db problems but still splitted
 				trackToDisplay = track['payload']['artist'] + ' – ' + track['payload']['title'];
 				trackStruct = track['payload'];
+				showingTrackStruct = track;
 
-				if (track['links'] && track['payload']['links'].length > 0) {
-					artistLink = track['payload']['links'][0];
+				if (track['payload']['links'] && track['payload']['links'].length > 0) {
+					artistLink = track['payload']['links'][0]['link_text'];
 				}
 				break;
 
 			case 1: // server couldn't parse track info and sends us what it had
 				trackToDisplay = track['payload']['raw_title'];
 				trackStruct = splitTrackInfo(track['payload']['raw_title']);
+				showingTrackStruct = {payload:trackStruct};
 				break;
 
 			default:
@@ -360,5 +363,5 @@ function setTempTitle(title)
 	
 	track.html(title);
 	clearTimeout(trackTimer);
-	trackTimer = setTimeout(function() {tempShowing = false; setTrackInfo(showingTrack, true); }, 5000);
+	trackTimer = setTimeout(function() {tempShowing = false; setTrackInfo(showingTrackStruct, true); }, 5000);
 }
