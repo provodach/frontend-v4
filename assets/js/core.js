@@ -93,6 +93,7 @@ function showContent (name, content) {
 	}
 
 	mkactive(name);
+	setupBlurEvents();
 	
 	$('#content').html(content);
 }

@@ -1,5 +1,8 @@
 var
-	RADIO_CURRENT_TRACK,
+	lastTrack,
+	showingTrack,
+	showingTrackStruct,
+	oldDocumentTitle,
 	trackTimer,
 	tempShowing = false;
 
@@ -56,6 +59,8 @@ function radioInit()
 		// Initialize track info.
 		requestTrackInfo();
 
+		setupBlurEvents();
+
 		playerReady = true;
 
 		visualInit();
@@ -65,6 +70,18 @@ function radioInit()
 		error ("Error: " + e.message);
 		playerReady = false;
 	}
+}
+
+function setupBlurEvents() {
+
+	oldDocumentTitle = document.title;
+
+	$(window).focus(function() {
+		document.title = oldDocumentTitle;
+	}).blur(function() {
+		oldDocumentTitle = document.title;
+		document.title = "♪ " + showingTrack;
+	});
 }
 
 function wheelVolControl(objEvent, intDelta)
@@ -87,7 +104,7 @@ function radioPlay(channel)
 		// Create a player object
 		radioPlayer = document.createElement('audio');
 		radioPlayer.src = 'https://station.waveradio.org/'+channel+'?'+randword();
-		radioPlayer.title = RADIO_CURRENT_TRACK;
+		radioPlayer.title = showingTrack;
 		radioPlayer.volume = radioGetVolume() / 100;
 
 		radioPlayer.onerror = function()
@@ -104,9 +121,8 @@ function radioPlay(channel)
 			}
 		}
 
-		radioPlayer.oncanplay = function()
-		{
-			setTrackInfo(RADIO_CURRENT_TRACK);
+		radioPlayer.oncanplay = function() {
+			setTrackInfo(showingTrack, true);
 			clearTimeout(playerRestartTimer);
 		}
 
@@ -235,89 +251,108 @@ function setVolValue(value)
 }
 
 
-function requestTrackInfo()
-{
+function requestTrackInfo() {
 	setTimeout(requestTrackInfo, 15000);
 
-    $.ajax(
-    {
-        url: 'https://bits.waveradio.org/api/track/provodach',
-        dataType: 'json',
-        crossDomain: true
-    }).done(
-        function (data)
-        {
-            processResult(data);
-        }
-    ).fail(function(jq, jx) { setTrackInfo('- bad connection -'); });
+	publicApiRequest(processBriefResult, true);
+}
+
+function publicApiRequest(onSuccess, isBrief) {
+	$.ajax({
+	        url: 'https://core.waveradio.org/public/current',
+	        data: {
+	        	station: 'provodach',
+	        	brief: (isBrief ? '1' : '0')
+	        },
+	        dataType: 'json',
+	        crossDomain: true
+	    }).done(function (data) {
+	       	onSuccess(data);
+	    }).fail(function(jq, jx) { setTrackInfo('- bad connection -'); });
 }
 
 
-function processResult(csRes)
-{
+function processBriefResult(csRes) {
 	
 	if (tempShowing)
 		return;
 	
-	try
-	{
-		var a = csRes["track"];
-	}
-	catch (e)
-	{
-		$("#track").text('- отказ сервера -');
-		$("#track").attr("href", "#");
-		return;
-	}
+	if (csRes['payload'] !== lastTrack) {
+		lastTrack = csRes['payload'];
 
-    if (a == null || typeof a == 'undefined')
-    {
-        $("#track").text('- нет данных -');
-        $("#track").attr("href", "#");
-        return;
-    }
-
-    if (a == "" || a == '-')
-	{
-        a = "- нет данных -";
-	}
-	
-	if (a != RADIO_CURRENT_TRACK)
-	{
-
-		RADIO_CURRENT_TRACK = a;
-		setTrackInfo (a);
+		publicApiRequest(setTrackInfo);
 	}
 }
 
-function setTrackInfo (track)
+function splitTrackInfo (track) {
+	return {
+		artist: track.substr(0, track.indexOf(' - ')),
+		title: track.substr(track.indexOf(' - ') + 3)
+	};
+}
+
+function setTrackInfo (track, override)
 {
 	if (!track)
 		return;
 
-	var trackParts = track.split(/\s\-\s/),
-		trackToDisplay = '';
+	var trackToDisplay = '',
+		trackStruct = {},
+		artistLink = "";
 
-	if (trackParts.length <= 1)
+	if (typeof track === 'string' && override) {
 		trackToDisplay = track;
-	else
-		trackToDisplay = trackParts[0] + ' – ' + trackParts[1];
+		trackStruct = splitTrackInfo(track);
 
-	// iOS
-	if (radioPlayer != null)
-		radioPlayer.title = trackToDisplay;
+	} else if (typeof track === 'object') {
+		switch (track['status']) {
+			case 0: // ok
+			case 2: // some db problems but still splitted
+				trackToDisplay = track['payload']['artist'] + ' – ' + track['payload']['title'];
+				trackStruct = track['payload'];
+				showingTrackStruct = track;
 
-	// Android/Chrome
-	if ('mediaSession' in navigator && radioPlayer != null)
-	{
-		navigator.mediaSession.metadata = new MediaMetadata({
-		    title: trackParts[1],
-		    artist: trackParts[0]
-		  });
+				if (track['payload']['links'] && track['payload']['links'].length > 0) {
+					artistLink = track['payload']['links'][0]['link_text'];
+				}
+				break;
+
+			case 1: // server couldn't parse track info and sends us what it had
+				trackToDisplay = track['payload']['raw_title'];
+				trackStruct = splitTrackInfo(track['payload']['raw_title']);
+				showingTrackStruct = {payload:trackStruct};
+				break;
+
+			default:
+				error ('Bad track info');
+				return;
+		}
 	}
 
-	$("#track").text(trackToDisplay);
-	$("#track").attr("href", "https://music.youtube.com/search?q=" + encodeURIComponent(trackParts[0] + ' ' + trackParts[1]));
+	if ((showingTrack !== trackToDisplay) || override) {
+		showingTrack = trackToDisplay;
+
+		// iOS
+		if (radioPlayer != null)
+			radioPlayer.title = trackToDisplay;
+
+		// Android/Chrome
+		if ('mediaSession' in navigator && radioPlayer != null)
+		{
+			navigator.mediaSession.metadata = new MediaMetadata(trackStruct);
+		}
+
+
+		$("#track").text(trackToDisplay);
+		$("#track").attr("href",
+			artistLink ? artistLink : 
+			"https://google.com/search?q=" + encodeURIComponent(trackStruct['artist'] + ' ' + trackStruct['title']));
+
+		if (document.title !== oldDocumentTitle) {
+			document.title = "♪ " + trackToDisplay;
+		}
+	}
+
 }
 
 function setTempTitle(title)
@@ -328,5 +363,5 @@ function setTempTitle(title)
 	
 	track.html(title);
 	clearTimeout(trackTimer);
-	trackTimer = setTimeout(function() {tempShowing = false; setTrackInfo(RADIO_CURRENT_TRACK); }, 5000);
+	trackTimer = setTimeout(function() {tempShowing = false; setTrackInfo(showingTrackStruct, true); }, 5000);
 }

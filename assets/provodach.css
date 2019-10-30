@@ -437,6 +437,42 @@ input:-webkit-autofill {
     background-color: transparent!important;
 }
 
+.chat-pic-catty {
+	height: 18px;
+}
+
+
+/* ===== Crawley Specific CSS ===== */
+
+.crawley-post {
+	margin-bottom: 15px;
+}
+
+.crawley-post-metadata {
+	width: 100%;
+	text-align: right;
+	color: #a0a0a0;
+	font-size: 10pt;
+	border-top: 1px dotted #909090;
+	margin-top: 5px;
+}
+
+.crawley-post-image {
+	max-width: 300px;
+}
+
+.crawley-post-audio {
+	width: 300px;
+}
+
+.crawley-post-image.single,
+.crawley-post-audio.single 
+{
+	width: 100%;
+	max-width: 100%;
+}
+
+/* ===== /Crawley Specific CSS ===== */
 
 @media handheld, only screen and (max-width: 1024px)
 {
@@ -540,5 +576,12 @@ input:-webkit-autofill {
 
 	.chat-content {
 		display: block;
+	}
+
+	/* Crawley */
+	.crawley-post-audio,
+	.crawley-post-image {
+		min-width: 100%;
+		width: 100%;
 	}
 }

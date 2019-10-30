@@ -5,7 +5,7 @@ require_once ('engine/devdect.php');
 
 
 // Change me when css/js is changed
-define ('CLIENT_VERSION', 7);
+define ('CLIENT_VERSION', 11);
 
 
 $route = explode('/', $_GET['route']);

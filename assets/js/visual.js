@@ -97,9 +97,12 @@ function canvasInit() {
 
 function visualStart() {
 	radioPlayer.crossOrigin = "anonymous";
+
 	source = audioCtx.createMediaElementSource(radioPlayer);
     source.connect(analyser);
 	source.connect(audioCtx.destination);
+
+	audioCtx.resume();
 
 	visualActive = true;
 	draw();
