@@ -784,7 +784,7 @@ function saria_getCommand (command)
 				border = (isForMe) ? 'background: rgba(70, 70, 70, 0.35); border-left: 3px solid #'+sariaSettings.defaultColor : '',
 				prefixIdx = parseInt(color[0], 16);
 
-			var messageHtml = '<div class="chat-message" style="'+border+'" id="mesg-'+commands[1]+'"><span class="chat-time">'+time+'</span> <span class="chat-id" onclick="mentionId('+commands[1]+')">'+commands[1]+'</span> <span class="chat-name" style="color: #'+color+'" onclick="mentionId('+commands[1]+')"><img class="chat-pic-catty" src="//api.nay.su/airin/catty.svg?c='+color+'"></span> <span class="chat-name" style="color: #'+color+'" onclick="mentionId('+commands[1]+')">'+commands[3]+'</span> <span class="chat-content" id="chat-content-'+commands[1]+'">'+saria_processMessage(fulltext)+'</span></div>';
+			var messageHtml = '<div class="chat-message" style="'+border+'" id="mesg-'+commands[1]+'"><span class="chat-time">'+time+'</span> <span class="chat-id" onclick="mentionId('+commands[1]+')">'+commands[1]+'</span> <span class="chat-name" style="color: #'+colorOverride+'" onclick="mentionId('+commands[1]+')"> '+prefixCodes[prefixIdx]+' '+commands[3]+'</span> <span class="chat-content" id="chat-content-'+commands[1]+'">'+saria_processMessage(fulltext)+'</span></div>';
 			
 			
 			if (mainCmd == 'LOGCON')
