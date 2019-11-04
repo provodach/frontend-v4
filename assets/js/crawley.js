@@ -9,7 +9,9 @@ var
     crawley_state = {
         currentPosition: 0,
         maxPosition: 0
-    };
+    },
+
+    crawley_audioDatabase = {};
 
 function crawley_textProcess(text) {
     var map = {
@@ -82,6 +84,10 @@ function crawley_renderPosts(content) {
 
     for (var i = 0; i < posts.length; i++) {
 
+        if (!(posts[i].attachment || posts[i].text)) {
+            continue; // skip empty posts
+        }
+
         postsHtml +=
             '<div id="crawley-post-' + posts[i].id + '" class="crawley-post">' +
             '<div class="crawley-post-content">';
@@ -97,8 +103,42 @@ function crawley_renderPosts(content) {
 
                 case 'voice':
                 case 'audio':
-                    postsHtml +=
+                    /* postsHtml +=
                         '<audio src="' + posts[i].attachment.url + '" id="crawley-post-' + posts[i].attachment.type + '-' + posts[i].attachment.id + '" class="crawley-post-audio' + (isSingle ? ' single' : '') + '" controls></audio>';
+
+                    */
+
+                    var
+                        audioId = 'audio' + posts[i].attachment.id,
+                        audioMeta = posts[i].attachment.meta;
+
+                    postsHtml += 
+                        '<div id="' + audioId + '" class="audio-static">' +
+                            '<div class="audio-static-player-wrapper" onclick="static_play(\'' + audioId + '\')">' +
+                                '<div id="' + audioId + '-player" class="audio-static-player">' +
+
+                                    '<svg id="' + audioId +'-player-paused" class="audio-player-paused" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183.93 210.54"><polygon points="2.5 4.31 2.5 206.23 178.9 105.27 2.5 4.31" style="fill:none;stroke-miterlimit:10;stroke-width:10px" /></svg>' +
+
+                                    '<svg id="' + audioId +'-player-playing" class="audio-player-playing" viewBox="0 0 156.43 206.52"><path d="M2.5,204H53.22V2.5H2.5ZM103.21,2.5V204h50.72V2.5Z" style="fill:none;stroke-miterlimit:10;stroke-width:10px"/></svg>' +
+
+                                '</div>' +
+                            '</div>' + 
+                            '<div class="audio-static-metadata">' + ((audioMeta) ? (
+                                '<div id="' + audioId + '-title" class="audio-static-title">' + 
+                                    crawley_textProcess(audioMeta) + 
+                                '</div>') : '') +
+                                '<div id="' + audioId + '-trackbar-wrap" data-audioId="' + audioId + '" class="audio-static-trackbar-wrap">' +
+                                    '<div id="' + audioId + '-trackbar" class="audio-static-trackbar">' + 
+                                        '<div id="' + audioId + '-trackbar-loaded" class="audio-static-trackbar-loaded"></div>' +
+                                        '<div id="' + audioId + '-trackbar-played" class="audio-static-trackbar-played"></div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>';
+
+                        crawley_audioDatabase[audioId] = {
+                            url: posts[i].attachment.url
+                        };
                     break;
 
                 default:

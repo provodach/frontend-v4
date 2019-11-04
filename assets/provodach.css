@@ -31,10 +31,13 @@ header {
 	left: 50%;
 	margin-left: -400px;
 	background: #020202;
+	z-index: 100;
 }
 
 content {
 	font-size: 12pt;
+	box-sizing: border-box;
+	padding: 5px;
 }
 
 #fullscreen-visuals {
@@ -473,6 +476,81 @@ input:-webkit-autofill {
 }
 
 /* ===== /Crawley Specific CSS ===== */
+
+/* ===== Static Audio Players ===== */
+
+.audio-static {
+	display: flex;
+	height: 50px;
+}
+
+.audio-static-player-wrapper {
+	width: 50px;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.audio-static-metadata {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.audio-static-title {
+	font-weight: 300;
+	font-size: 13pt;
+	height: 100%;
+}
+
+.audio-static-trackbar-wrap {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.audio-static-trackbar {
+	border: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	background: #101010;
+	height: 2px;
+}
+
+.audio-static-trackbar-loaded,
+.audio-static-trackbar-played {
+	position: absolute;
+	height: 2px;
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+
+.audio-static-trackbar-loaded {
+	background: #351538;
+	width: 0;
+}
+
+.audio-static-trackbar-played {
+	background: #f5f5f5;
+	width: 0;
+}
+
+.audio-static-player, .audio-static-player svg {
+	/* border-top: 7px solid transparent; */
+	height: 25px;
+	stroke: #f5f5f5;
+	margin: 0 auto;
+}
+
+.audio-player-playing {
+	display: none; /* by default state is paused */
+}
+
+/* ===== /Static Audio Players ===== */
 
 @media handheld, only screen and (max-width: 1024px)
 {

@@ -4,6 +4,7 @@ var
     showingTrackStruct,
     oldDocumentTitle,
     trackTimer,
+    lastStaticAudio,
     tempShowing = false;
 
 function rnd(min, max) {
@@ -22,7 +23,6 @@ function randword() {
 var radioPlayer = null;
 var playerReady = false,
     currentChannel = '',
-    nowPlaying = false,
     playerRestartTimer = null;
 
 function radioInit() {
@@ -90,6 +90,11 @@ function setupVolumeControl() {
 function radioPlay(channel) {
     channel = channel || currentChannel;
 
+    if (radioPlayer) {
+        console.warn("RadioPlayer is already running!", radioPlayer);
+        return;
+    }
+
     if (playerReady) {
         // Create a player object
         radioPlayer = document.createElement('audio');
@@ -98,7 +103,7 @@ function radioPlay(channel) {
         radioPlayer.volume = radioGetVolume() / 100;
 
         radioPlayer.onerror = function() {
-            if (nowPlaying) {
+            if (radioPlayer) {
                 setTempTitle('Error, will restart in three seconds...');
                 radioStop();
 
@@ -119,7 +124,7 @@ function radioPlay(channel) {
         }
 
         radioPlayer.onloadstart = function() {
-            if (nowPlaying)
+            if (radioPlayer)
                 setTempTitle('Buffering...');
         }
 
@@ -136,9 +141,12 @@ function radioPlay(channel) {
 }
 
 function radioStop() {
-    if (playerReady && radioPlayer) {
+    if (radioPlayer) {
+        $(radioPlayer).off(); // disable all event listeners
         radioPlayer.pause();
-        radioPlayer.src = '';
+        if (!lastStaticAudio) { // reset src only if we've playing the radio stream
+            radioPlayer.src = '';
+        }
         radioPlayer.remove();
         delete radioPlayer;
 
@@ -146,8 +154,15 @@ function radioStop() {
         radioPlayer = null;
         visualStop();
 
+        $('.audio-static-trackbar-wrap').off(); // disable seeking on static audio
+
+        // radio player
         $('#player-control-playing').hide();
         $('#player-control-paused').show();
+
+        // static players (if any)
+        $('.audio-player-playing').hide();
+        $('.audio-player-paused').show();
         setVal('player_on', 0);
     }
 }
@@ -190,17 +205,20 @@ function radioToggle(channel) {
         error('Cannot start player, did not initialize yet');
         return false;
     }
-    if (radioPlayer == null) {
+    if (radioPlayer) {
         try {
-            nowPlaying = true;
-            radioPlay(channel);
+            radioStop();
+
+            if (lastStaticAudio) {
+                lastStaticAudio = "";
+                radioPlay(channel);
+            }
         } catch (e) {
             error('Error: ' + e.message);
         }
     } else {
         try {
-            nowPlaying = false;
-            radioStop();
+            radioPlay(channel);
         } catch (e) {
             error('Error: ' + e.message);
         }
@@ -334,4 +352,120 @@ function setTempTitle(title) {
         tempShowing = false;
         setTrackInfo(showingTrackStruct, true);
     }, 5000);
+}
+
+function static_play(audioId) {
+
+    radioStop();
+
+    // JS's asycnchronousness sucks. 
+    // If you know more elegant solution please file a PR.
+    // Thank you m8.
+    setTimeout(function() {
+        if (audioId === lastStaticAudio) {
+            lastStaticAudio = "";
+            return;
+        }
+
+        lastStaticAudio = audioId;
+
+        var
+            audioUrl = crawley_audioDatabase[audioId].url;
+
+
+        if (playerReady) {
+            // Create a player object
+            radioPlayer = document.createElement('audio');
+            radioPlayer.src = audioUrl;
+            // radioPlayer.title = showingTrack;
+            radioPlayer.volume = radioGetVolume() / 100;
+
+            radioPlayer.onerror = function() {
+                // 
+            }
+
+            radioPlayer.oncanplay = function() {
+                //
+            }
+
+            radioPlayer.onstalled = function() {
+                // 
+            }
+
+            radioPlayer.onloadstart = function() {
+                //
+            }
+
+            radioPlayer.onprogress = function() {
+
+                if (radioPlayer) {
+                    var duration = radioPlayer.duration;
+                    if (duration > 0) {
+                        for (var i = 0; i < radioPlayer.buffered.length; i++) {
+                            if (radioPlayer.buffered.start(radioPlayer.buffered.length - 1 - i) < radioPlayer.currentTime) {
+                                var progress = (radioPlayer.buffered.end(radioPlayer.buffered.length - 1 - i));
+
+                                static_setGauge(audioId, 'loaded', progress, duration);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            radioPlayer.ontimeupdate = function() {
+                if (radioPlayer) {
+                    static_setGauge(audioId, 'played', radioPlayer.currentTime, radioPlayer.duration);
+                }
+
+            }
+
+            radioPlayer.play();
+
+            // visualStart();
+
+            $('#' + audioId + '-trackbar-wrap').click(static_onPositionSeek);
+            $('#' + audioId + '-player-paused').hide();
+            $('#' + audioId + '-player-playing').show();
+        } else {
+            error('ERR: Still loading');
+        }
+    }, 100);
+
+
+
+}
+
+function static_setGauge(audioId, gaugeType, value, max) {
+    var
+        totalWidth = +$('#' + audioId + '-trackbar').width(),
+        gauge = null;
+
+    switch (gaugeType) {
+        case 'loaded':
+            gauge = $('#' + audioId + '-trackbar-loaded');
+            break;
+
+        case 'played':
+            gauge = $('#' + audioId + '-trackbar-played');
+            break;
+
+        default:
+            return;
+    }
+
+    gauge.width((value * totalWidth) / max);
+}
+
+function static_onPositionSeek(event) {
+    var
+        ctl = $(event.target),
+        offset = ctl.offset();
+
+    if (radioPlayer) {
+        var
+            x = event.pageX - offset.left;
+
+        radioPlayer.currentTime = (x * radioPlayer.duration / ctl.width());
+    }
 }
