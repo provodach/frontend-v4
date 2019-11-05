@@ -398,6 +398,7 @@ function static_play(audioId) {
             }
 
             radioPlayer.onended = function() {
+                lastStaticAudio = "";
                 radioStop();
             }
 
