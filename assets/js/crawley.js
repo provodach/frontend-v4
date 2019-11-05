@@ -137,7 +137,8 @@ function crawley_renderPosts(content) {
                         '</div>';
 
                         crawley_audioDatabase[audioId] = {
-                            url: posts[i].attachment.url
+                            url: posts[i].attachment.url,
+                            meta: posts[i].attachment.meta
                         };
                     break;
 
