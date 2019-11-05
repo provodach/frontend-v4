@@ -515,7 +515,7 @@ input:-webkit-autofill {
 	padding: 0;
 	margin: 0;
 	width: 100%;
-	background: #101010;
+	background: #555555;
 	height: 2px;
 }
 
@@ -530,7 +530,7 @@ input:-webkit-autofill {
 
 
 .audio-static-trackbar-loaded {
-	background: #351538;
+	background: #ac1caa;
 	width: 0;
 }
 
