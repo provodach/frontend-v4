@@ -63,7 +63,7 @@ content {
 	fill: #f5f5f5;
 	cursor: pointer;
 
-	z-index: 50;
+	z-index: 110;
 }
 
 #settings, #settings-overlay {
