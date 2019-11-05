@@ -370,14 +370,15 @@ function static_play(audioId) {
         lastStaticAudio = audioId;
 
         var
-            audioUrl = crawley_audioDatabase[audioId].url;
+            audioUrl = crawley_audioDatabase[audioId].url,
+            audioMeta = crawley_audioDatabase[audioId].meta;
 
 
         if (playerReady) {
             // Create a player object
             radioPlayer = document.createElement('audio');
             radioPlayer.src = audioUrl;
-            // radioPlayer.title = showingTrack;
+            radioPlayer.title = audioMeta || "Provoda.ch";
             radioPlayer.volume = radioGetVolume() / 100;
 
             radioPlayer.onerror = function() {
