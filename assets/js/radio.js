@@ -396,6 +396,10 @@ function static_play(audioId) {
                 //
             }
 
+            radioPlayer.onended = function() {
+                radioStop();
+            }
+
             radioPlayer.onprogress = function() {
 
                 if (radioPlayer) {
