@@ -102,6 +102,8 @@ function radioPlay(channel) {
         radioPlayer.title = showingTrack;
         radioPlayer.volume = radioGetVolume() / 100;
 
+        lastStaticAudio = ""; // No static audio is playing right now
+
         radioPlayer.onerror = function() {
             if (radioPlayer) {
                 setTempTitle('Error, will restart in three seconds...');

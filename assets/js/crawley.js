@@ -110,16 +110,23 @@ function crawley_renderPosts(content) {
 
                     var
                         audioId = 'audio' + posts[i].attachment.id,
-                        audioMeta = posts[i].attachment.meta;
+                        audioMeta = posts[i].attachment.meta,
+                        pausedState = "block",
+                        playingState = "none";
+
+                    if (audioId === lastStaticAudio) {
+                        pausedState = "none",
+                        playingState = "block";
+                    }
 
                     postsHtml += 
                         '<div id="' + audioId + '" class="audio-static">' +
                             '<div class="audio-static-player-wrapper" onclick="static_play(\'' + audioId + '\')">' +
                                 '<div id="' + audioId + '-player" class="audio-static-player">' +
 
-                                    '<svg id="' + audioId +'-player-paused" class="audio-player-paused" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183.93 210.54"><polygon points="2.5 4.31 2.5 206.23 178.9 105.27 2.5 4.31" style="fill:none;stroke-miterlimit:10;stroke-width:10px" /></svg>' +
+                                    '<svg id="' + audioId +'-player-paused" class="audio-player-paused" style="display:' + pausedState + '" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183.93 210.54"><polygon points="2.5 4.31 2.5 206.23 178.9 105.27 2.5 4.31" style="fill:none;stroke-miterlimit:10;stroke-width:10px" /></svg>' +
 
-                                    '<svg id="' + audioId +'-player-playing" class="audio-player-playing" viewBox="0 0 156.43 206.52"><path d="M2.5,204H53.22V2.5H2.5ZM103.21,2.5V204h50.72V2.5Z" style="fill:none;stroke-miterlimit:10;stroke-width:10px"/></svg>' +
+                                    '<svg id="' + audioId +'-player-playing" class="audio-player-playing" style="display:' + playingState + '" viewBox="0 0 156.43 206.52"><path d="M2.5,204H53.22V2.5H2.5ZM103.21,2.5V204h50.72V2.5Z" style="fill:none;stroke-miterlimit:10;stroke-width:10px"/></svg>' +
 
                                 '</div>' +
                             '</div>' + 

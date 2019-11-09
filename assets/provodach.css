@@ -551,10 +551,6 @@ input:-webkit-autofill {
 	margin: 0 auto;
 }
 
-.audio-player-playing {
-	display: none; /* by default state is paused */
-}
-
 /* ===== /Static Audio Players ===== */
 
 @media handheld, only screen and (max-width: 1024px)
