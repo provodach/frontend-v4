@@ -156,10 +156,10 @@ function crawley_renderPosts(content) {
         var postDate = new Date(posts[i].timestamp * 1000);
 
         postsHtml +=
-            '<div class="crawley-post-metadata" id="crawley-post-metadata-' + posts[i].id + '>' +
-            '<span class="crawley-post-metadata-time">' +
+            '<div class="crawley-post-metadata" id="crawley-post-metadata-' + posts[i].id + '">' +
+            '<a class="crawley-post-metadata-time" href="https://provoda.ch/news?post=' + posts[i].id + '">' +
             postDate.getDate() + '.' + ('0' + (postDate.getMonth() + 1)).slice(-2) + '.' + postDate.getFullYear() +
-            '</span>' +
+            '</a>' +
             '</div>';
 
         postsHtml += "</div></div>"

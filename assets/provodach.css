@@ -460,6 +460,11 @@ input:-webkit-autofill {
 	margin-top: 5px;
 }
 
+.crawley-post-metadata-time {
+	text-decoration: none;
+	color: #a0a0a0;
+}
+
 .crawley-post-image {
 	max-width: 300px;
 }
