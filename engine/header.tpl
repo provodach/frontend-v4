@@ -56,9 +56,21 @@
 				</div>
 			</div>
 
-			<h3>Эффекты</h3>
-			<div class="checkbox" onclick="toggleVisuals();">
-				<div class="checkbox-box" id="cbx-visuals"></div> Включить эффекты (может снизить производительность)
+			<div id="settings-visual">
+				<h3>Эффекты</h3>
+				<div class="checkbox" onclick="toggleVisuals();">
+					<div class="checkbox-box" id="cbx-visuals"></div> Включить эффекты (может снизить производительность)
+				</div>
+			</div>
+
+			<div id="settings-search">
+				<h3>Поисковая система</h3>
+				<select id="audio-search-provider" onchange="radio_setSearchProvider(this)">
+					<option value="google">Google</option>
+					<option value="vk">В Контакте</option>
+					<option value="soundcloud">SoundCloud</option>
+					<option value="bandcamp">Bandcamp</option>
+				</select>
 			</div>
 
 			<div id="chat-settings">

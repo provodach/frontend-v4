@@ -7,6 +7,14 @@ var
     lastStaticAudio,
     tempShowing = false;
 
+var
+    searchProviders = {
+        'google': 'https://google.com/search?q=%q',
+        'vk': 'https://vk.com/audio?q=%q',
+        'soundcloud': 'https://soundcloud.com/search?q=%q',
+        'bandcamp': 'https://bandcamp.com/search?q=%q'
+    };
+
 function rnd(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -45,6 +53,8 @@ function radioInit() {
 
         a.remove();
         delete a;
+
+        radio_setSearchSelect();
 
         setupVolumeControl();
 
@@ -279,13 +289,24 @@ function splitTrackInfo(track) {
     };
 }
 
+function setTrackLink(trackStruct) {
+    var artistLink = "";
+
+    if (trackStruct['links'] && trackStruct['links'].length > 0) {
+        artistLink = trackStruct['links'][0]['link_text'];
+    }
+
+    $("#track").attr("href",
+        artistLink ? artistLink :
+        radio_createSearchUrl(trackStruct['artist'] + ' ' + trackStruct['title']));
+}
+
 function setTrackInfo(track, override) {
     if (!track)
         return;
 
     var trackToDisplay = '',
-        trackStruct = {},
-        artistLink = "";
+        trackStruct = {};
 
     if (typeof track === 'string' && override) {
         trackToDisplay = track;
@@ -300,7 +321,7 @@ function setTrackInfo(track, override) {
                 showingTrackStruct = track;
 
                 if (track['payload']['links'] && track['payload']['links'].length > 0) {
-                    artistLink = track['payload']['links'][0]['link_text'];
+                    trackStruct['links'] = track['payload']['links'];
                 }
                 break;
 
@@ -332,9 +353,7 @@ function setTrackInfo(track, override) {
 
 
         $("#track").text(trackToDisplay);
-        $("#track").attr("href",
-            artistLink ? artistLink :
-            "https://google.com/search?q=" + encodeURIComponent(trackStruct['artist'] + ' ' + trackStruct['title']));
+        setTrackLink(trackStruct);
 
         if (document.title !== oldDocumentTitle) {
             document.title = "♪ " + trackToDisplay;
@@ -476,4 +495,35 @@ function static_onPositionSeek(event) {
 
         radioPlayer.currentTime = (x * radioPlayer.duration / ctl.width());
     }
+}
+
+function radio_setSearchProvider(element) {
+    var provider = $(element).val();
+
+    if (searchProviders[provider]) {
+        setVal('search_provider', provider);
+
+        if (showingTrackStruct && showingTrackStruct.payload) {
+            setTrackLink(showingTrackStruct.payload);
+        }
+    } else {
+        console.warn('Bad search provider', provider);
+    }
+
+}
+
+function radio_getSearchProvider() {
+    return getVal('search_provider', 'vk');
+}
+
+function radio_setSearchSelect() {
+    $('#audio-search-provider').val(radio_getSearchProvider());
+}
+
+function radio_createSearchUrl(query) {
+    var
+        provider = radio_getSearchProvider(),
+        providerUrl = searchProviders[provider];
+
+    return providerUrl.replace('%q', encodeURIComponent(query));
 }
