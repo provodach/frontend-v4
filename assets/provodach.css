@@ -80,7 +80,8 @@ content {
 	z-index: 999;
 }
 
-#settings {
+#settings,
+.fd-main {
 	z-index: 1000;
 	background: #020202;
 
@@ -95,20 +96,28 @@ content {
 	font-size: 11pt;
 }
 
-#settings-header {
+.fd-main {
+	border: 1px solid #c0c0c0;
+}
+
+#settings-header,
+.fd-header
+ {
 	box-sizing: border-box;
 	padding: 10px;
 	border-bottom: 1px solid #f5f5f5;
 	height: 40px;
 }
 
-#settings-header-text {
+#settings-header-text,
+.fd-header-text {
 	float: left;
 	font-size: 14pt;
 	margin-top: -4px;
 }
 
-#settings-close-button {
+#settings-close-button,
+.fd-close-button {
 	width: 20px;
 	height: 20px;
 	display: block;
@@ -116,7 +125,8 @@ content {
 	cursor: pointer;
 }
 
-#settings-content {
+#settings-content,
+.fd-content {
 	box-sizing: border-box;
 	padding: 10px;
 }
@@ -157,7 +167,8 @@ content {
 	background: #020202;
 }
 
-#settings input, #settings select {
+#settings input, #settings select,
+.fd-main input, .fd-main select {
 	border: none;
 	border-bottom: 1px solid #707070;
 	font-family: "PT Sans", "Open Sans", Sans-Serif;
@@ -180,6 +191,28 @@ content {
 
 .settings-hint {
 	color: #909090;
+}
+
+.fd-buttons {
+	text-align: right;
+}
+
+.fd-main button {
+	border: none;
+	font-family: "PT Sans", "Open Sans", Sans-Serif;
+	font-size: 12pt;
+	box-sizing: border-box;
+	padding: 5px;
+	display: inline-block;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	min-width: 30px;
+	outline: none;
+	-webkit-outline: none;
+	cursor: pointer;
+
+	background: #404040;
+	color: #f5f5f5;
 }
 
 #container {
@@ -602,7 +635,8 @@ input:-webkit-autofill {
 	}
 
 
-	#settings {
+	#settings,
+	.fd-main {
 		position: fixed;
 		height: 100%;
 		width: 100%;
