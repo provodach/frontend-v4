@@ -16,8 +16,8 @@ function get_template ($mode)
 		case 'pp' :
 			return 'pp.tpl'; break;
 
-		case 'donate' :
-			return 'donate.tpl'; break;
+		case 'contribute' :
+			return 'contribute.tpl'; break;
 			
 		default :
 			header ('HTTP/1.1 404 Not Found');
@@ -38,6 +38,9 @@ function get_title($mode)
 			
 		case 'chat' :
 			return 'Чат'; break;
+
+		case 'contribute' :
+			return 'Поддержать'; break;
 			
 		default :
 			return '404';

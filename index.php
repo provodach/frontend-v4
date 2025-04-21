@@ -5,7 +5,7 @@ require_once ('engine/devdect.php');
 
 
 // Change me when css/js is changed
-define ('CLIENT_VERSION', 26);
+define ('CLIENT_VERSION', 27);
 
 
 $route = explode('/', $_GET['route']);
@@ -25,16 +25,9 @@ if ($route[0] == 'e')
 			$redirectAddress = 'https://provoda.ch/404';
 			break;
 
-		case 'ios':
-			$redirectAddress = 'https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1080566427';
-			break;
 
 		case 'telegram':
 			$redirectAddress = 'https://t.me/provodach';
-			break;
-
-		case 'tunein':
-			$redirectAddress = 'http://tunein.com/radio/Provodach-s255847/';
 			break;
 
 		case 'app' :

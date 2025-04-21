@@ -15,5 +15,10 @@ $menu = Array
 	'about' => Array (
 		'active' => false,
 		'title' => 'О радио'
+	),
+	
+	'contribute' => Array (
+		'active' => false,
+		'title' => 'Поддержать'
 	)
 );
